@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(231, 231, 231);
+            color: rgb(199 199 199);
+            font-family:Helvetica, sans-serif;
+        }
+
+        .wrapper {
+            width: 60%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .wrapper #app {
+            font-size: 30px;
+        }
+
+        .wrapper span {
+            color: #ff2600;
+            padding: 5px 10px;
+        }
+    </style>
+    <title>距離2021 / 倒數計時</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>距離12月31號 23點59分59秒還有</h1>
+        <div id="app">
+            <span></span>天
+            <!-- <span></span>時 -->
+            <span></span>分
+            <span></span>秒
+        </div>
+    </div>
+
+    <script>
+   
+     var aI = document.getElementsByTagName('span');
+
+        setInterval(function () {
+            //獲取當前時間
+             var time = new Date(); 
+             var nowTime = time.getTime(); //獲取當前毫秒
+           //設定結束時間 12月31號23:59分
+           
+           time.setMonth(11);
+           time.setDate(31);
+           time.setHours(23);
+           time.setMinutes(59);
+           time.setSeconds(59);
+           var endTime = time.getTime();
+
+        //倒數計時 ：差值
+        var offsetTime = (endTime - nowTime) / 1000 ;// 以1000毫秒為
+        var sec = parseInt(offsetTime % 60);// 秒
+        var min = parseInt((offsetTime / 60) % 60); //分
+       // var hr  = parseInt(offsetTime / 60 / 60); // 時
+        var day = parseInt(offsetTime / 60 / 60 / 24);//天
+ 
+        //塞入html裡
+        aI[0].textContent = day;
+        aI[1].textContent = min;
+        aI[2].textContent = sec;
+        })
+
+
+        // var days = document.getElementById("app");
+
+        // days.innerHTML = '倒數計時器'
+    </script>
+
+
+</body>
+
+</html>
